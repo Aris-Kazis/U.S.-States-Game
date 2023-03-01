@@ -48,3 +48,4 @@ for state in correct_answers:
 
 missing_states = pandas.Series(missing_states)
 missing_states.to_csv("states_to_learn.csv")
+
