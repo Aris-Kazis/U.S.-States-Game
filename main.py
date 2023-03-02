@@ -10,7 +10,6 @@ image = "blank_states_img.gif"
 turtle.addshape(image)
 turtle.shape(image)
 
-
 answer_state = screen.textinput(title="Guess the State", prompt="What's another state's name?").title()
 
 states_cor = pandas.read_csv("50_states.csv")
@@ -46,6 +45,21 @@ missing_states = states.to_list()
 for state in correct_answers:
     missing_states.remove(state)
 
-missing_states = pandas.Series(missing_states)
-missing_states.to_csv("states_to_learn.csv")
+missing_states_series = pandas.Series(missing_states)
+missing_states_series.to_csv("states_to_learn.csv")
 
+missing_state = turtle.Turtle()
+missing_state.penup()
+missing_state.hideturtle()
+missing_state.color("red")
+screen.tracer(0)
+
+for state in missing_states:
+    cor_x = int(states_cor[states_cor.state == state].x)
+    cor_y = int(states_cor[states_cor.state == state].y)
+    missing_state.goto(cor_x, cor_y)
+    missing_state.write(f"{state}", align="center", font=FONT)
+
+screen.update()
+
+turtle.exitonclick()
