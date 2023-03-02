@@ -63,4 +63,3 @@ for state in missing_states:
 screen.update()
 
 turtle.exitonclick()
-
